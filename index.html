@@ -1,11 +1,114 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Labyrinten</title>
-  </head>
-  <body>
-    <h1>Välkommen till Labyrinten</h1>
-    <p>Om du ser detta så funkar allt!</p>
-  </body>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Labyrinten</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      text-align: center;
+    }
+    #intro, #map, #riddle, #instructions {
+      display: none;
+      margin-top: 20px;
+    }
+    input[type="text"] {
+      padding: 8px;
+      font-size: 16px;
+      width: 200px;
+    }
+    button {
+      padding: 8px 12px;
+      font-size: 16px;
+      margin-left: 10px;
+    }
+    img {
+      max-width: 90%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <div id="image">
+    <img src="https://i.imgur.com/7vMZ1Te.jpeg" alt="Förhandsbild med hjärta" />
+    <div style="margin-top: 20px;">
+      <input type="text" id="codeInput" placeholder="Skriv kodord här..." />
+      <button onclick="checkCode()">Fortsätt</button>
+    </div>
+  </div>
+
+  <div id="intro">
+    <h2>Välkommen, Micke.</h2>
+    <p>Johanna har byggt något till dig. Det är inte ett brev. Inte ett minne. Det är en plats. En Labyrint.</p>
+    <p>Här inne finns allt. Men du måste gå själv. Och du måste känna efter på vägen. Kodorden leder dig vidare.</p>
+    <p>När du är redo klickar du dig framåt. Jag följer med dig hela vägen.</p>
+    <button onclick="showMap()">Visa karta</button>
+  </div>
+
+  <div id="map">
+    <h3>Skattkartan</h3>
+    <img src="https://i.imgur.com/tL2CDDa.jpeg" alt="Skattkarta" />
+    <p>Nästa steg är en gåta. Skriv svaret för att låsa upp instruktionerna.</p>
+    <button onclick="showRiddle()">Lös gåtan</button>
+  </div>
+
+  <div id="riddle">
+    <p><em>Vad skrev du i ett sällskapsspel i juni 2023 – för att markera något som bara ni två förstod?</em></p>
+    <input type="text" id="riddleInput" placeholder="Skriv svaret..." />
+    <button onclick="checkRiddle()">Lås upp</button>
+  </div>
+
+  <div id="instructions">
+    <h3>Instruktioner</h3>
+    <p>Du får nu gå in i vilket rum du vill, i vilken ordning du vill. Känn efter.</p>
+    <ul style="text-align: left; display: inline-block;">
+      <li>1. Historia</li>
+      <li>2. Pippi</li>
+      <li>3. Min kompis</li>
+      <li>4. Orimligheten</li>
+      <li>5. Viggo/Alva</li>
+      <li>6. Kärleken</li>
+      <li>7. Musikens tidslinje</li>
+      <li>8. Min Micke</li>
+      <li>9. Framtiden</li>
+      <li>10. Möjligheternas rum</li>
+      <li>11. Spegling</li>
+    </ul>
+    <p>Klicka på valfritt rum när du är redo.</p>
+  </div>
+
+  <script>
+    function checkCode() {
+      const input = document.getElementById("codeInput").value.trim().toLowerCase();
+      if (input === "mario") {
+        document.getElementById("image").style.display = "none";
+        document.getElementById("intro").style.display = "block";
+      } else {
+        alert("Fel kodord. Försök igen.");
+      }
+    }
+
+    function showMap() {
+      document.getElementById("intro").style.display = "none";
+      document.getElementById("map").style.display = "block";
+    }
+
+    function showRiddle() {
+      document.getElementById("map").style.display = "none";
+      document.getElementById("riddle").style.display = "block";
+    }
+
+    function checkRiddle() {
+      const answer = document.getElementById("riddleInput").value.trim().toLowerCase();
+      if (answer === "gul bil") {
+        document.getElementById("riddle").style.display = "none";
+        document.getElementById("instructions").style.display = "block";
+      } else {
+        alert("Fel svar. Försök igen.");
+      }
+    }
+  </script>
+</body>
 </html>
